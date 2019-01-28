@@ -89,12 +89,13 @@
   
     $http.get(url).then(successCallback1, errorCallback1);
       	function successCallback1 (response) {
-				 console.log("success: " + response.data);
-				// $scope.communes.splice(id+1, 1);
-				//$route.reload();
+      		location.reload(); 
+				 console.log("success: " + response.data);				
+				 
 				 }
    function errorCallback1(response) {
 					console.log('err',err);
+					 location.reload();
 			}
       	
       	

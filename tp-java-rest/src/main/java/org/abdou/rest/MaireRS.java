@@ -62,9 +62,11 @@ public class MaireRS {
 	
 	@GET @Path("delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deletMaire(@PathParam("id") long id1) {
+	public Response deletMaire(@PathParam("id") long id1) throws URISyntaxException {
 		Maire maire= myMaireEJB.deletebyId(id1);
-		return Response.ok().entity("le maire "+ maire.getPrenom()+" "+ maire.getNom().toUpperCase() + " est suprimer").build();
+		//return Response.ok().entity("le maire "+ maire.getPrenom()+" "+ maire.getNom().toUpperCase() + " est suprimer").build();
+		URI uri1 = new URI("http://localhost:8080/tp-java-rest/maire.jsp");
+		return Response.temporaryRedirect(uri1).build();
 	} 
 	
 }

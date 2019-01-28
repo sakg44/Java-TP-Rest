@@ -44,13 +44,17 @@
 				<table class="table table-bordered">
 					<tr>
 						<th>Id</th>
-						<th>Nom</th>
+						<th>Nom commune</th>
 						<th>Id_maire</th>
+						<th>Nom_maire</th>
+						<th>Prenom_maire</th>
 					</tr>
 					<tr data-ng-repeat="x in communes">
 						<th>{{x.id }}</th>
 						<th>{{x.nom }}</th>
 						<th>{{x.maire.id }}</th>
+						<th>{{x.maire.nom }}</th>
+						<th>{{x.maire.prenom }}</th>
 						
 
 						<th>
@@ -72,7 +76,7 @@
 					data-ng-model='idcommune'> <label for="textarea">Id
 					maire :</label><input type="number" data-ng-model='idmaire'>
 				<button data-ng-click="metEnRelation()" type="submit"
-					class="btn btn-warning">Validez</button>
+					class="btn btn-info">Validez</button>
 			</div>
 
 
@@ -108,8 +112,7 @@
 				$http.get(url).then(successCallback1, errorCallback1);
 				function successCallback1(response) {
 					console.log("success: " + response.data);
-					// $scope.communes.splice(id+1, 1);
-					//$route.reload();
+							 location.reload(); 
 				}
 				function errorCallback1(response) {
 					console.log('err', err);
@@ -128,13 +131,13 @@
 				$http.get(url).then(successCallback3, errorCallback3);
 				
 				function successCallback3(response) {
-					console.log("success: " + response.data);
-					// $scope.communes.splice(id+1, 1);
-					//$route.reload();
+					console.log("success: " + response.data);					
+					 location.reload(); 
 				}
 				
 				function errorCallback3(response) {
 					console.log(url);
+					location.reload(); 
 				}
 
 			};
