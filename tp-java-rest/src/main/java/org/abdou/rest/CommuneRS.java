@@ -52,8 +52,8 @@ public class CommuneRS {
 		
 		@POST @Path("create")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-		public Response setCommune(@FormParam("commune") String name) throws URISyntaxException {
-			long id= comEJB.createCommune(name);
+		public Response setCommune(@FormParam("commune") String name,@FormParam("code") String code) throws URISyntaxException {
+			long id= comEJB.createCommune(name,code);
 			//return Response.ok().entity("la commune creer avec id :" +id).build();
 			URI uri1 = new URI("http://localhost:8080/tp-java-rest/commune.jsp");
 			return Response.temporaryRedirect(uri1).build();
@@ -61,9 +61,9 @@ public class CommuneRS {
 		
 		@POST @Path("modifie")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-		public Response updateCommune(@FormParam("id") long id,@FormParam("newCommune") String name) throws URISyntaxException
+		public Response updateCommune(@FormParam("id") long id,@FormParam("newCommune") String name,@FormParam("code") String code) throws URISyntaxException
 		{
-			comEJB.updatebyId(id, name);
+			comEJB.updatebyId(id, name,code);
 			URI uri1 = new URI("http://localhost:8080/tp-java-rest/commune.jsp");
 			//return Response.ok().entity("la commune dont id=" +id+ "est update").build();
 			return Response.temporaryRedirect(uri1).build();

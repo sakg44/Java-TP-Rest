@@ -10,41 +10,60 @@
 <body data-ng-app="monApp">
 
 	<div class="row container">
-		<div class="col-lg-6 col-md-6  col-xs-6 col-sm-6">
+		<div class="col-lg-3 col-md-3  col-xs-3 col-sm-3 well">
 
-			<h4>Creation</h4>
+			<h3>Creation d'une commune</h3>
 			<form class="form-inline" action="rest/commune/create" method="post">
-				<div class="form-group">
-					<label for="textarea">Nom de la commune :</label> <input
-						type="text" name="commune" />
+				<div class="form-group " >
+					<label for="textarea" >Nom de la commune :</label><br><input
+						type="text" name="commune"  placeholder="Enter le nom de la commune"/><br><br>
+					<label for="textarea">Code postal :    </label><br><input
+						type="text" name="code" placeholder="Enter le code postal" /><br><br>
+						<button type="submit" class="btn btn-success">Créer commune</button><br><br>
 				</div>
-				<button type="submit" class="btn btn-success">Créer commune</button>
+				
 			</form>
 		</div>
-		<div class="col-lg-6 col-md-6  col-xs-6 col-sm-6">
-			<h4>Modification</h4>
+		<div class="col-lg-3 col-md-3  col-xs-3 col-sm-3">
+			<h3>Mise à jour d'une commune</h3>
 			<form action="rest/commune/modifie" method="post">
 				<div class="form-group">
-					<label for="textarea">Nouveau nom :</label> <input type="text"
-						name="newCommune" /> <label for="textarea">Id :</label> <input
-						type="text" name="id" />
+					<label for="textarea">Nouveau nom :</label><br><input type="text" 
+						name="newCommune"  placeholder="nouveau nom de la commune" /> <br><br>
+						<label for="textarea">Code postal :</label><br> <input
+						type="text" name="code" placeholder="nouveau code postal" /><br><br>
+						<label for="textarea">Id :</label><br> <input
+						type="text" name="id" placeholder="l'id du commune"/><br><br>
 
 					<button type="submit" class="btn btn-warning">Update
 						commune</button>
 				</div>
 			</form>
 		</div>
+		<div class="col-lg-3 col-md-3  col-xs-3 col-sm-3">
+			<h3>Mise en relation entre Commune et Maire</h3>
+
+			<div data-ng-controller='relationctrl'>
+				<label for="textarea">Id commune :</label><br><input type="number"
+					data-ng-model='idcommune' placeholder="id de la commune"><br><br> <label for="textarea">Id
+					maire :</label><br><input type="number" data-ng-model='idmaire' placeholder="id du maire"><br><br>
+				<button data-ng-click="metEnRelation()" type="submit"
+					class="btn btn-info">Validez</button>
+			</div>
+		</div>
 	</div>
 	<div class="row container">
-		<div class="col-lg-6 col-md-6  col-xs-6 col-sm-6">
+		<div class="col-lg-12 col-md-12  col-xs-12 col-sm-12">
 			<div data-ng-controller="myCommunesCTRL"
 				class="col-lg-10 col-md-10  col-xs-10 col-sm-10">
-				<p>Liste des Communes</p>
+				<br>
+				<h4>Liste des Communes</h4>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-striped">
 					<tr>
 						<th>Id</th>
 						<th>Nom commune</th>
+						<th>Code Postal</th>
 						<th>Id_maire</th>
 						<th>Nom_maire</th>
 						<th>Prenom_maire</th>
@@ -52,6 +71,7 @@
 					<tr data-ng-repeat="x in communes">
 						<th>{{x.id }}</th>
 						<th>{{x.nom }}</th>
+						<th>{{x.codePostal }}</th>
 						<th>{{x.maire.id }}</th>
 						<th>{{x.maire.nom }}</th>
 						<th>{{x.maire.prenom }}</th>
@@ -68,21 +88,12 @@
 
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6  col-xs-6 col-sm-6">
-			<h4>Mise en relation Commune et Maire</h4>
-
-			<div data-ng-controller='relationctrl'>
-				<label for="textarea">Id commune :</label><input type="number"
-					data-ng-model='idcommune'> <label for="textarea">Id
-					maire :</label><input type="number" data-ng-model='idmaire'>
-				<button data-ng-click="metEnRelation()" type="submit"
-					class="btn btn-info">Validez</button>
-			</div>
+		
 
 
 		</div>
 
-	</div>
+
 
 
 	<script>

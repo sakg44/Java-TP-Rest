@@ -17,9 +17,10 @@ public class CommuneEJB {
 	@PersistenceContext(unitName="tp-rest")
 	private EntityManager em ;
 	
-	public long createCommune( String name) {
+	public long createCommune( String name, String code) {
 		Commune com= new Commune();
 		com.setNom(name) ;
+		com.setCodePostal(code);
 		em.persist(com);
 		return com.getId();
 	}
@@ -36,8 +37,9 @@ public class CommuneEJB {
 	}
 	
 	
-	public long updatebyId(long id, String name) {
+	public long updatebyId(long id, String name,String code) {
 		em.find(Commune.class, id).setNom(name);
+		em.find(Commune.class, id).setCodePostal(code);
 		return id;
 	}
 	
